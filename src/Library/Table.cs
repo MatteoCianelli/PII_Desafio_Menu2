@@ -13,7 +13,7 @@ namespace Ucu.Poo.Restaurant
     /// </summary>
     public class Table
     {
-        private ArrayList order = new ArrayList();
+        private Order order = new Order();
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Table"/>.
@@ -40,6 +40,7 @@ namespace Ucu.Poo.Restaurant
         public void Occupy()
         {
             this.IsOccupied = true;
+            this.order = new Order();
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace Ucu.Poo.Restaurant
         public void Free()
         {
             this.IsOccupied = false;
-            this.order.Clear();
+            this.order = null;
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Ucu.Poo.Restaurant
         /// <param name="dish">El platillo que se agrega al pedido.</param>
         public void AddToOrder(Dish dish)
         {
-            this.order.Add(dish);
+            this.order.AddToOrder(dish);
         }
 
         /// <summary>
@@ -66,7 +67,19 @@ namespace Ucu.Poo.Restaurant
         /// <returns><see langword="true"/> si tiene pedidos; de lo contrario, <see langword="false"/>.</returns>
         public bool HasOrders()
         {
-            return this.order.Count > 0;
+            if(this.order != null)
+            {
+                return this.order.HasOrders();
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public double GetTotal()
+        {
+            return this.order.GetTotal();
         }
     }
 }

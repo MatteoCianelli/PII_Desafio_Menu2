@@ -26,4 +26,5 @@
         "*": false
     },
     "githubPullRequests.codingAgent.codeLens": false,
+    "python-envs.defaultEnvManager": "ms-python.python:system",
 }
